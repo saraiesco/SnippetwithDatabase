@@ -17,17 +17,21 @@ public class SnippetController {
 
     //getAll
     @GetMapping
-    public ResponseEntity<List<Snippet> getAllSnippets(){
+    public ResponseEntity<List<Snippet>> getAllSnippets(){
         return new ResponseEntity<List<Snippet>>(snippetService.allSnippets(), HttpStatus.OK);
     }
 
     //getOne
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Snippet>> getSingleClinician(@PathVariable String id){
-        return new ResponseEntity<Optional<Snippet>>(snippetService.singleSnippet(id), HttpStatus.OK);
+    public ResponseEntity<Snippet> getSingleSnippet(@PathVariable String id) {
+        Snippet snippet = snippetService.singleSnippet(id);
+        if (snippet != null) {
+            return new ResponseEntity<>(snippet, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     //post
 
-    }
 }

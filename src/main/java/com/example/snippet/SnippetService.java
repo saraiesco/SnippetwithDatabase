@@ -2,6 +2,7 @@ package com.example.snippet;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ public class SnippetService {
     }
 
     //getByID
-    public Optional<Snippet> singleSnippet(String id){
+    public Snippet singleSnippet(String id) {
         return snippetRepository.findById(id);
     }
 
