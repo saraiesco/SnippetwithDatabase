@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
 @Data
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Snippet {
     @Id
     private ObjectId objectId;

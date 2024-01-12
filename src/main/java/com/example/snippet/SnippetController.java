@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -18,7 +19,7 @@ public class SnippetController {
     //getAll
     @GetMapping
     public ResponseEntity<List<Snippet>> getAllSnippets(){
-        return new ResponseEntity<List<Snippet>>(snippetService.allSnippets(), HttpStatus.OK);
+        return new ResponseEntity<>(snippetService.allSnippets(), HttpStatus.OK);
     }
 
     //getOne
@@ -33,5 +34,13 @@ public class SnippetController {
     }
 
     //post
+    @PostMapping
+    public ResponseEntity<Snippet> createSnippet(@RequestBody Map<String, Object> payload) {
+        String id = (String) payload.get("id");
+        String language = (String) payload.get("language");
+        String code = (String) payload.get("code");
 
+        Snippet snippet = snippetService.createSnippet(id,language,code) ;
+        return new ResponseEntity<Snippet>(snippet, HttpStatus.CREATED);
+    }
 }
